@@ -1,238 +1,390 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Compra tu libro</title>
-</head>
+<meta http-equiv="Content-Type" content="text/html; charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compra tu libro - Universidad Humanitas</title>
 
 <style type="text/css">
+    /* General Styles - Improved Palette & Typography */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #eef3f7; /* Lighter background for more contrast */
+        color: #333;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
 
-	table{
-	      margin-top:50px;
-	      caption-side:bottom;
-	      margin-left:auto;	     
-	      margin-right:auto;
-}
+    /* Header - Integrated Look */
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 25px 40px; /* More vertical padding */
+        background-color: #ffffff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+    }
 
+    .header-container img {
+        max-width: 100%;
+        height: auto;
+    }
 
-	th{
-             background-color:grey;
-             color:white;
-	
-	}
+    .logo-ihb {
+        width: 350px;
+    }
 
-	table,th,td{
-             border:1px solid black;
-	     border-callapse:collapse;
-	
-	}
+    .logo-humanitas {
+        width: 150px;
+    }
+    
+    /* Content Area - Central Container */
+    .content-area {
+        max-width: 900px; /* Slightly narrower to focus attention */
+        margin: 30px auto 50px auto;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Stronger overall shadow */
+        overflow: hidden;
+        text-align: left;
+    }
+    
+    /* Typography and Headings */
+    h1, h2, h3 {
+        color: #004a8b; /* Primary Humanitas Blue */
+        text-align: center;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+    }
 
+    h1 {
+        padding-top: 30px;
+        font-size: 2.5em; /* Larger title */
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
 
+    h2 {
+        font-size: 1.2em;
+        font-weight: 400;
+        margin-bottom: 35px;
+        color: #555;
+    }
 
-	th,td{
-	      padding:10px;
+    h3 {
+        font-size: 1.6em;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        padding-bottom: 5px;
+        border-bottom: 3px solid #007bff; /* Highlight with button blue */
+        display: inline-block;
+        padding: 0 10px 5px 10px;
+    }
 
-	     }
+    .text-section {
+        padding: 0 50px 30px 50px; /* More side padding */
+    }
 
+    /* Lists - Step numbers are now blue */
+    ol {
+        list-style: none; /* Remove default numbering */
+        counter-reset: step-counter; /* Initialize counter */
+        padding-left: 0;
+        line-height: 1.7;
+    }
+    
+    li {
+        margin-bottom: 20px;
+        padding-left: 45px; /* Space for the custom counter */
+        position: relative;
+        font-size: 1.05em;
+    }
 
+    li::before {
+        content: counter(step-counter);
+        counter-increment: step-counter;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #007bff; /* Step number background */
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        line-height: 30px;
+        font-size: 1.1em;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
 
+    /* Buttons - Refined Blue */
+    .btn-group {
+        text-align: center;
+        padding: 30px 0 40px 0; /* More spacing */
+        border-top: 1px solid #ddd;
+    }
 
-	th{
-	      backgound-color:blue
+    .btn {
+        border-radius: 25px; /* Pill shape for a modern look */
+        display: inline-block;
+        padding: 12px 30px; 
+        margin: 10px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
 
-	     }
+    .btn-primary {
+        color: white;
+        background-color: #007bff; 
+    }
+    .btn-primary:hover {
+        background-color: #0056b3; 
+        transform: translateY(-3px) scale(1.02); /* More noticeable lift and slight scale */
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
 
+    /* Warning Text - More defined */
+    .warning-text {
+        text-align: center;
+        font-weight: 600;
+        color: #a00; /* Darker red for accessibility */
+        background-color: #fff0f0; 
+        padding: 20px;
+        margin-top: 30px;
+        border-radius: 10px;
+        border-left: 5px solid #c0392b; /* Strong left border as a warning indicator */
+        line-height: 1.5;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-	
-		.btn{
-			border-radius: 			3px;
-			display: inline-					block;
-			padding: 5px 			15px;
-			text-decoration: 			none;
-			text-shadow: 0 1px 0 rgba(255,255,255,0.3);
-			box-shadow: 0 1px 1px rgba(0,0,0,0.3); 
-		}
+    /* WhatsApp Links Styling - Secondary Color */
+    .whatsapp-links {
+        text-align: center;
+        margin-top: 20px;
+        padding: 30px 50px;
+        background-color: #eef3f7; /* Matches body background for separation */
+        border-top: 1px solid #ddd;
+    }
+    .whatsapp-links strong {
+        display: block;
+        margin-bottom: 15px;
+        color: #004a8b;
+        font-size: 1.1em;
+    }
+    .whatsapp-links .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    
+    /* Book Grid Section - Visual Polish */
+    .book-gallery-section {
+        padding: 30px 50px 50px 50px;
+        background-color: #ffffff;
+    }
 
-		.btn-green{
-			color: white;
-			background-color:                         #4a9cee;
-		}
-		.btn-green:hover{
-			background-color: 			#8d4aee;	
-		}
-		.btn-green:active{
-			background-color: 			#29962A;
-		}
+    .book-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjusted min size */
+        gap: 40px;
+        margin-top: 30px;
+    }
 
+    .book-item {
+        padding: 20px;
+        border-radius: 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: #fff;
+        border: 1px solid #eee;
+    }
 
-
-
+    .book-item:hover {
+        transform: translateY(-5px); /* Stronger lift effect */
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+        border-color: #007bff; /* Clear visual feedback */
+    }
+    
+    .book-item img {
+        max-width: 120px;
+        height: auto;
+        margin: 0 auto 20px auto;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+    
+    .book-title {
+        font-weight: 700;
+        margin: 0 0 20px 0;
+        color: #333;
+        min-height: 40px;
+    }
+    
+    /* Media Queries for smaller screens */
+    @media (max-width: 768px) {
+        .header-container {
+            flex-direction: column;
+            padding: 15px;
+        }
+        .logo-ihb {
+            max-width: 90%;
+            margin-bottom: 10px;
+        }
+        .logo-humanitas {
+            max-width: 50%;
+        }
+        .content-area {
+            margin: 20px auto;
+        }
+        .text-section, .whatsapp-links, .book-gallery-section {
+            padding: 20px 20px;
+        }
+        .whatsapp-links .btn {
+            display: block;
+            width: 90%;
+            margin: 10px auto;
+        }
+        li {
+            font-size: 1em;
+        }
+        .book-grid {
+            gap: 20px;
+        }
+    }
+    
 </style>
 
+<meta charset="UTF-8">
+</head>
 
 <body>
 
+    <div class="header-container">
+        <img src="https://lvsihmx.github.io/certificadoih/img/LOGOIHB.jpg" class="logo-ihb" alt="Logo IH International House" />
+        <img src="https://lvsihmx.github.io/certificadoih/img/logohum2.png" class="logo-humanitas" alt="Logo Humanitas" />
+    </div>
 
-<body>
-
-
-    <img src="https://lvsihmx.github.io/certificadoih/img/LOGOIHB.jpg" width="455" height="156" />
-
-    <img src="https://lvsihmx.github.io/certificadoih/img/logohum2.png" width="177" height="145" style="float:right"/>
-    
-    
-    <body bgcolor="white" text="" marginwidth="100" marginheight="80">
+    <div class="content-area">
+        <h1>LIBROS DE INGLÉS</h1>
+        <h2>UNIVERSIDAD HUMANITAS CAMPUS REYES, SANTA FE, VALLE Y MADÍN.</h2>
         
+        <div class="text-section">
+            <p>
+                Estimados alumnos de Universidad Humanitas, en esta página encontrarán los pasos para adquirir sus libros. 
+                Recuerden que es importante contar con el mismo para un mejor desempeño en la materia de inglés.
+            </p>
+
+            <h3>Adquiere tu libro en estos sencillos pasos:</h3>
+            
+            <ol>
+                <li>
+                    Identifica el título a comprar. Más abajo podrás ver las portadas y !da click en comprar!.Puedes pagar con tarjeta de crédito, débito y en efectivo, pero debes pagar el mismo día que generas la referencia.
+
+                </li>
+                
+                <li>
+                    Debes adquirir tu libro en las fechas que te indique tu plantel. Si lo compras después, la entrega demorará (aproximadamente **2 semanas y media**).
+                </li>
+                <li>
+                    Una vez realizado el pago, **REGISTRA TU COMPRA** usando el botón de abajo e ingresa al grupo de whatsapp para conocer el estatus.
+                </li>
+                
+            </ol>
+
+            <div class="btn-group">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5WQjQl7XsZsfNdp_uqCtxU3syQWcu_wr44kj-rx6a-fiATQ/viewform?usp=dialog" class="btn btn-primary">
+                    Da clic para REGISTRAR TU COMPRA
+                </a>
+                
+                <p class="warning-text">
+                    **¡IMPORTANTE!** Al realizar tu pago debes registar tu compra con el libro y campus correcto.
+                </p>
+            </div>
+        </div>
         
+        <div class="whatsapp-links">
+            <strong>Ingresa al grupo de WhatsApp de tu campus:</strong>
+            <p>
+                <a href="https://chat.whatsapp.com/HB51YsptQzx6pr8ElZx6Sv" class="btn btn-primary">Reyes</a>
+                <a href="https://chat.whatsapp.com/BcbTu3Wlxlr4A6c73BOSrT" class="btn btn-primary">Valle</a>
+                <a href="https://chat.whatsapp.com/BAbc4BOM5DBE0dZZ2OsxYI" class="btn btn-primary">Madín</a>
+                <a href="" class="btn btn-primary">Santa Fe</a>
+            </p>
+        </div>
+        
+        <div class="book-gallery-section">
+            <h3 style="text-align:center;">Portadas de Libros</h3>
+            
+            <div class="book-grid">
+                
+                <div class="book-item">
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" target="_blank">
+                        <img src="https://lvsihmx.github.io/librosih/img/empower a1.jpg" alt="Portada de Empower A1" />
+                    </a>
+                    <p class="book-title">Empower A1</p>
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary" target="_blank">
+                        Comprar
+                    </a>
+                </div>
 
-</h1></center></center></h1>
-    
-    
-    <h2><center>UNIVERSIDAD HUMANITAS CAMPUS REYES,SANTA FE , VALLE Y MADIN.</center></h2><br>
-    
-<h3><p></p>
+                <div class="book-item">
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" target="_blank">
+                        <img src="https://lvsihmx.github.io/librosih/img\empower a2.jpg" alt="Portada de Empower A2" />
+                    </a>
+                    <p class="book-title">Empower A2</p>
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary" target="_blank">
+                        Comprar
+                    </a>
+                </div>
 
+                <div class="book-item">
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" target="_blank">
+                        <img src="https://lvsihmx.github.io/librosih/img\empower b1.jpg" alt="Portada de Empower B1" />
+                    </a>
+                    <p class="book-title">Empower B1</p>
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary" target="_blank">
+                        Comprar
+                    </a>
+                </div>
+                
+                <div class="book-item">
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" target="_blank">
+                        <img src="https://lvsihmx.github.io/librosih/img\empowerbms.jpg" alt="Portada de Empower B1+" />
+                    </a>
+                    <p class="book-title">Empower B1+</p>
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary" target="_blank">
+                        Comprar
+                    </a>
+                </div>
 
-<body bgcolor="bababa" text="" marginwidth="100" marginheight="80">
+                <div class="book-item">
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" target="_blank">
+                        <img src="https://lvsihmx.github.io/librosih/img\empower b2.jpg" alt="Portada de Empower B2" />
+                    </a>
+                    <p class="book-title">Empower B2</p>
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary" target="_blank">
+                        Comprar
+                    </a>
+                </div>
 
+                <div class="book-item">
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" target="_blank">
+                        <img src="https://lvsihmx.github.io/librosih/img\empower c1.webp" alt="Portada de Empower C1" />
+                    </a>
+                    <p class="book-title">Empower C1</p>
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary" target="_blank">
+                        Comprar
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 
-<h1><center>LIBROS DE INGL&Eacute;S</center></h1><br>
-			
-<br>
-<p></p>
+</body>
+</html>
 
-<h1><center>UNIVERSIDAD HUMANITAS CAMPUS REYES,SANTA FE , VALLE &amp; MADIN.</center></h1><br>
-<p>Estimados alumnos de Universidad Humanitas , en esta pagina encontraran los pasos para adquirir sus libros recuerden que es importante contar con el mismo para un mejor desempe&ntilde;o en la materia de ingl&eacute;s.</p>
-
-<p>Adquiere tu libro en estos sencillos pasos</p> 
-
-
-
-
-<ul>
-  <li>Puedes adquirir tu libro en las fechas que te indique tu plantel si lo compras después la entrega demora un poco más. La entrega se realizará a las 2 semanas y media de la compra.
-Se requiere un minimo de 25 libros para hacer la entrega por lo que te recomendamos realizarla en la fecha que les da la universidad.	  
-
-
-</li>
-
-  <li>Identifica el titulo a comprar en la parte de abajo podras ver las portadas
-
-
-</li>
-</ul>
-<ul>
-  <li>Una vez identificado el titulo da clic en el boton para realizar la compra puedes apoyarte del manual que puedes descargar en el boton de abajo.</li>
-
-  
-	<li><p>Puedes realizar el pago con tarjeta de crédito,débito y en efectivo. Debes pagar el mismo día que generas la referencia.
-	  </p></li>
-
-	
- <li>Cuando realices el pago REGISTRA TU COMPRA e ingresa al grupo de whatsapp de tu campus y donde se compartirá el estatus.
-
-
-</li>
-		
-<p>
-		
-		<a href=" https://docs.google.com/forms/d/e/1FAIpQLSc5WQjQl7XsZsfNdp_uqCtxU3syQWcu_wr44kj-rx6a-fiATQ/viewform?usp=dialog" class="btn btn-green">Da clcik para registrar tu comra</a>
-
-</p>
-
-<h1>Al realizar el resgitro debes poner el campus para hacer la entrega si no lo pones quedará en almacen hasta que identifiquen el campus
-</h1>	
-	<p>
-</p>
-
-	
-<p>
-		
-		
-
-</p>
-	
-<ul>
-</ul>
-	  
-	 
-  <p>  
-	 <strong>Ingresa al grupo de tu campus:</strong>	  
-		  
-	  </p>
-	  
-<p>
-	  <a href="https://chat.whatsapp.com/HB51YsptQzx6pr8ElZx6Sv" class="btn btn-green">Da clic aquí para Reyes</a> 
-
-	</p>
-<p>
-		<a href="https://chat.whatsapp.com/BcbTu3Wlxlr4A6c73BOSrT"class="btn btn-green">Da clic aquí para Valle</a> 
-
-</p>
-
-<p>
-  <a href="https://chat.whatsapp.com/BAbc4BOM5DBE0dZZ2OsxYI"class="btn btn-green">Da clic aquí para MAdin</a> 
-	</p>
-	<p>
-  <a href="" class="btn btn-green">Da clic aquí para Santa Fe</a> 
-
-
-</p>
-	</li>
-</ul>
-
-
-<ul>
-					
-  </li>
-</ul>
-
-
-<img src="" width="0" height="0" />
-
-<img src="" width="0" height="0" />
-
-<table style="width:100%">
-
-
-<tr>
-
-<td>
-	<a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" >
-<img src="img\empower a1.jpg" width="145" height="225" /></a> <strong>Titulo:Empower A1 </strong>
-</td>
-
-
-
-
-<td>  <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/">
-<img src="img\empower a2.jpg" width="145" height="225" /></a><strong>Titulo:Empower A2 </strong>
-</td>
-
-
-<td>  <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/">
-<img src="img\empower b1.jpg" width="145" height="225" /></a><strong>Titulo:Empower B1 </strong>
-</td>
-</tr>
-
-
-
-<tr>
-
-<td><a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" >
-<img src="img\empowerbms.jpg" width="145" height="225" /></a><strong>Titulo:Empower B1+ </strong>
-</td>
-
-
-
-
-<td> <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" >
-<img src="img\empower b2.jpg" width="145" height="225" /></a><strong>Titulo:Empower B2</strong>
-</td>
-
-
-<td> <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" >
-<img src="img\empower c1.webp" width="145" height="225" /></a><strong>Titulo:Empower C1</strong>
-</td>
-</tr>
 
