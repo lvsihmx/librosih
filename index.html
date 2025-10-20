@@ -6,7 +6,6 @@
 <title>Compra tu libro - Universidad Humanitas</title>
 
 <style type="text/css">
-    /* General Styles */
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         background-color: #eef3f7;
@@ -165,7 +164,6 @@
         color: #333;
     }
 
-    /* MODAL STYLES */
     #customModal {
         display: none;
         position: fixed;
@@ -221,7 +219,10 @@
         transform: scale(1.05);
     }
 
-    /* ✅ Responsive adjustments for mobile */
+    html {
+        scroll-behavior: smooth;
+    }
+
     @media (max-width: 600px) {
         .header-container {
             flex-direction: column;
@@ -262,17 +263,19 @@
                 Recuerden que es importante contar con el mismo para un mejor desempeño en la materia de inglés.
             </p>
 
-            <h3>Adquiere tu libro en estos sencillos pasos:</h3>
+            <h3>Adquiere tu libro en las fechas que te indique tu plantel y sigue estos pasos:</h3>
             
             <ol>
-                <li>Identifica el título a comprar. Más abajo podrás ver las portadas y <strong>¡da click en comprar!</strong></li>
-                <li>Debes adquirir tu libro en las fechas que te indique tu plantel.</li>
+                <li>Identifica el título a comprar. 
+                    <a href="#portadas" class="btn btn-primary" style="padding: 6px 18px; font-size: 0.9em;">¡Da clic para comprar!</a>
+                </li>
+           
                 <li>Una vez realizado el pago, <strong>REGISTRA TU COMPRA</strong> usando el botón de abajo.</li>
             </ol>
 
             <div class="btn-group">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5WQjQl7XsZsfNdp_uqCtxU3syQWcu_wr44kj-rx6a-fiATQ/viewform?usp=dialog" class="btn btn-primary">
-                    Da clic para REGISTRAR TU COMPRA
+                    Da clic para REGISTRAR TUS DATOS PARA ENVÍO DE LIBRO
                 </a>
                 <p class="warning-text">
                     <strong>¡IMPORTANTE!</strong> Al realizar tu pago debes registrar tu compra con el libro y campus correcto.
@@ -290,7 +293,7 @@
             </p>
         </div>
         
-        <div class="book-gallery-section">
+        <div id="portadas" class="book-gallery-section">
             <h3 style="text-align:center;">Portadas de Libros</h3>
             <div class="book-grid">
                 <div class="book-item">
@@ -339,7 +342,6 @@
         </div>
     </div>
 
-    <!-- Modal -->
     <div id="customModal">
         <div class="modal-content">
             <p>Una vez que hayas terminado tu compra y tengas tu recibo debes regresar a este link para registrar tu compra.</p>
