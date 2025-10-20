@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Compra tu libro - Universidad Humanitas</title>
 
 <style type="text/css">
-    /* General Styles - Improved Palette & Typography */
+    /* General Styles */
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         background-color: #eef3f7;
@@ -16,7 +16,6 @@
         text-align: center;
     }
 
-    /* Header - Integrated Look */
     .header-container {
         display: flex;
         justify-content: space-between;
@@ -28,20 +27,9 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
 
-    .header-container img {
-        max-width: 100%;
-        height: auto;
-    }
+    .logo-ihb { width: 350px; }
+    .logo-humanitas { width: 150px; }
 
-    .logo-ihb {
-        width: 350px;
-    }
-
-    .logo-humanitas {
-        width: 150px;
-    }
-    
-    /* Content Area - Central Container */
     .content-area {
         max-width: 900px;
         margin: 30px auto 50px auto;
@@ -51,57 +39,28 @@
         overflow: hidden;
         text-align: left;
     }
-    
-    /* Typography and Headings */
+
     h1, h2, h3 {
         color: #004a8b;
         text-align: center;
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
     }
 
-    h1 {
-        padding-top: 30px;
-        font-size: 2.5em;
-        font-weight: 700;
-        letter-spacing: 1px;
-    }
+    h1 { padding-top: 30px; font-size: 2.5em; font-weight: 700; }
+    h2 { font-size: 1.2em; font-weight: 400; margin-bottom: 35px; color: #555; }
+    h3 { font-size: 1.6em; margin-top: 40px; margin-bottom: 20px; border-bottom: 3px solid #007bff; display: inline-block; padding: 0 10px 5px 10px; }
 
-    h2 {
-        font-size: 1.2em;
-        font-weight: 400;
-        margin-bottom: 35px;
-        color: #555;
-    }
+    .text-section { padding: 0 50px 30px 50px; }
 
-    h3 {
-        font-size: 1.6em;
-        margin-top: 40px;
-        margin-bottom: 20px;
-        padding-bottom: 5px;
-        border-bottom: 3px solid #007bff;
-        display: inline-block;
-        padding: 0 10px 5px 10px;
-    }
-
-    .text-section {
-        padding: 0 50px 30px 50px;
-    }
-
-    /* Lists - Step numbers are now blue */
     ol {
         list-style: none;
         counter-reset: step-counter;
         padding-left: 0;
-        line-height: 1.7;
     }
-    
     li {
         margin-bottom: 20px;
         padding-left: 45px;
         position: relative;
-        font-size: 1.05em;
     }
-
     li::before {
         content: counter(step-counter);
         counter-increment: step-counter;
@@ -116,11 +75,8 @@
         font-weight: bold;
         text-align: center;
         line-height: 30px;
-        font-size: 1.1em;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 
-    /* Buttons - Refined Blue */
     .btn-group {
         text-align: center;
         padding: 30px 0 40px 0;
@@ -134,7 +90,7 @@
         margin: 10px;
         text-decoration: none;
         font-weight: bold;
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        transition: all 0.3s ease;
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
@@ -148,7 +104,6 @@
         box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
 
-    /* Warning Text - More defined */
     .warning-text {
         text-align: center;
         font-weight: 600;
@@ -158,11 +113,8 @@
         margin-top: 30px;
         border-radius: 10px;
         border-left: 5px solid #c0392b;
-        line-height: 1.5;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    /* WhatsApp Links Styling - Secondary Color */
     .whatsapp-links {
         text-align: center;
         margin-top: 20px;
@@ -170,26 +122,7 @@
         background-color: #eef3f7;
         border-top: 1px solid #ddd;
     }
-    .whatsapp-links strong {
-        display: block;
-        margin-bottom: 15px;
-        color: #004a8b;
-        font-size: 1.1em;
-    }
-    .whatsapp-links p {
-        /* Ensure buttons wrap correctly */
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .whatsapp-links .btn {
-        padding: 10px 20px;
-        font-size: 0.9em;
-        /* Ensure buttons stack neatly on small screens */
-        min-width: 120px; 
-    }
-    
-    /* Book Grid Section - Visual Polish */
+
     .book-gallery-section {
         padding: 30px 50px 50px 50px;
         background-color: #ffffff;
@@ -200,7 +133,7 @@
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: 40px;
         margin-top: 30px;
-        text-align: center; /* Center book items */
+        text-align: center;
     }
 
     .book-item {
@@ -216,115 +149,77 @@
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         border-color: #007bff;
     }
-    
+
     .book-item img {
         max-width: 120px;
         height: auto;
         margin: 0 auto 20px auto;
         border-radius: 5px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
     }
-    
+
     .book-title {
         font-weight: 700;
-        margin: 0 0 20px 0;
+        margin-bottom: 20px;
         color: #333;
-        min-height: 40px;
     }
-    
-    /* --- Media Queries for Mobile Screens (Max 600px for tight phone view) --- */
-    @media (max-width: 600px) {
-        
-        /* Header adjustments */
-        .header-container {
-            flex-direction: column;
-            padding: 15px 10px; /* Reduced horizontal padding */
-        }
-        .logo-ihb {
-            width: 80%; /* Takes up more space on mobile */
-            max-width: 250px;
-            margin-bottom: 10px;
-        }
-        .logo-humanitas {
-            width: 40%;
-            max-width: 100px;
-        }
-        
-        /* Typography adjustments */
-        h1 {
-            font-size: 2em; /* Smaller title */
-            padding-top: 15px;
-        }
-        h2 {
-            font-size: 1.1em;
-            margin-bottom: 20px;
-        }
-        h3 {
-            font-size: 1.4em;
-        }
-        
-        /* Content Padding and Margins */
-        .content-area {
-            margin: 15px auto;
-            border-radius: 0; /* Optional: Remove border-radius on very small screens */
-            box-shadow: none; /* Optional: Remove shadow on very small screens */
-        }
-        .text-section, .book-gallery-section {
-            padding: 20px 15px; /* Significant reduction of side padding */
-        }
-        .whatsapp-links {
-            padding: 20px 15px;
-        }
 
-        /* List adjustments */
-        li {
-            font-size: 1em;
-            padding-left: 40px; /* Slightly less padding */
-            text-align: left; /* Ensure text stays left-aligned */
-        }
-        li::before {
-            width: 25px; /* Smaller step number circle */
-            height: 25px;
-            line-height: 25px;
-            font-size: 1em;
-        }
+    /* Modal styles with fade, blur and zoom animation */
+    #customModal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0; top: 0;
+        width: 100%; height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(6px);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
 
-        /* Button group adjustments */
-        .btn-group {
-            padding: 20px 0 20px 0;
-        }
-        .btn-primary {
-            /* Main CTA should be full width */
-            display: block;
-            width: 90%;
-            margin: 10px auto;
-        }
+    #customModal.show {
+        display: block;
+        opacity: 1;
+    }
 
-        /* WhatsApp buttons stack vertically */
-        .whatsapp-links .btn {
-            display: block;
-            width: 90%;
-            margin: 8px auto;
-            padding: 10px;
-            border-radius: 10px; /* Less rounded for campus buttons */
-        }
+    #customModal .modal-content {
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 30px;
+        max-width: 400px;
+        text-align: center;
+        margin: 15% auto;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
 
-        /* Book Grid to 2 columns max on small screens */
-        .book-grid {
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 15px;
-        }
-        .book-item img {
-            max-width: 100px; /* Smaller images */
-        }
-        .book-title {
-            min-height: 30px; /* Reduce title space */
-            font-size: 0.9em;
-        }
+    #customModal.show .modal-content {
+        transform: scale(1);
+    }
+
+    #customModal p {
+        margin-bottom: 25px;
+        font-size: 1.05em;
+        color: #333;
+    }
+
+    #modalButton {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    #modalButton:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
     }
 </style>
-
-<meta charset="UTF-8">
 </head>
 
 <body>
@@ -347,26 +242,17 @@
             <h3>Adquiere tu libro en estos sencillos pasos:</h3>
             
             <ol>
-                <li>
-                    Identifica el título a comprar. Más abajo podrás ver las portadas y **¡da click en comprar!** Puedes pagar con tarjeta de crédito, débito y en efectivo, pero debes pagar el mismo día que generas la referencia.
-                </li>
-                
-                <li>
-                    Debes adquirir tu libro en las fechas que te indique tu plantel. Si lo compras después, la entrega demorará (aproximadamente **2 semanas y media**).
-                </li>
-                <li>
-                    Una vez realizado el pago, **REGISTRA TU COMPRA** usando el botón de abajo e ingresa al grupo de whatsapp para conocer el estatus.
-                </li>
-                
+                <li>Identifica el título a comprar. Más abajo podrás ver las portadas y **¡da click en comprar!**</li>
+                <li>Debes adquirir tu libro en las fechas que te indique tu plantel.</li>
+                <li>Una vez realizado el pago, **REGISTRA TU COMPRA** usando el botón de abajo.</li>
             </ol>
 
             <div class="btn-group">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5WQjQl7XsZsfNdp_uqCtxU3syQWcu_wr44kj-rx6a-fiATQ/viewform?usp=dialog" class="btn btn-primary">
                     Da clic para REGISTRAR TU COMPRA
                 </a>
-                
                 <p class="warning-text">
-                    **¡IMPORTANTE!** Al realizar tu pago debes registar tu compra con el libro y campus correcto.
+                    **¡IMPORTANTE!** Al realizar tu pago debes registrar tu compra con el libro y campus correcto.
                 </p>
             </div>
         </div>
@@ -377,78 +263,99 @@
                 <a href="https://chat.whatsapp.com/HB51YsptQzx6pr8ElZx6Sv" class="btn btn-primary">Reyes</a>
                 <a href="https://chat.whatsapp.com/BcbTu3Wlxlr4A6c73BOSrT" class="btn btn-primary">Valle</a>
                 <a href="https://chat.whatsapp.com/BAbc4BOM5DBE0dZZ2OsxYI" class="btn btn-primary">Madín</a>
-                <a href="" class="btn btn-primary">Santa Fe</a>
+                <a href="#" class="btn btn-primary">Santa Fe</a>
             </p>
         </div>
         
         <div class="book-gallery-section">
             <h3 style="text-align:center;">Portadas de Libros</h3>
-            
             <div class="book-grid">
-                
+
                 <div class="book-item">
-                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" target="_blank">
-                        <img src="https://lvsihmx.github.io/librosih/img/empower a1.jpg" alt="Portada de Empower A1" />
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="redirect-link">
+                        <img src="https://lvsihmx.github.io/librosih/img/empower a1.jpg" alt="Empower A1" />
                     </a>
                     <p class="book-title">Empower A1</p>
-                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary" target="_blank">
-                        Comprar
-                    </a>
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary redirect-link">Comprar</a>
                 </div>
 
                 <div class="book-item">
-                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" target="_blank">
-                        <img src="https://lvsihmx.github.io/librosih/img\empower a2.jpg" alt="Portada de Empower A2" />
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="redirect-link">
+                        <img src="https://lvsihmx.github.io/librosih/img/empower a2.jpg" alt="Empower A2" />
                     </a>
                     <p class="book-title">Empower A2</p>
-                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary" target="_blank">
-                        Comprar
-                    </a>
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary redirect-link">Comprar</a>
                 </div>
 
+
+
                 <div class="book-item">
-                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" target="_blank">
-                        <img src="https://lvsihmx.github.io/librosih/img\empower b1.jpg" alt="Portada de Empower B1" />
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="redirect-link">
+                        <img src="https://lvsihmx.github.io/librosih/img/empower b1.jpg" alt="Empower A2" />
                     </a>
                     <p class="book-title">Empower B1</p>
-                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary" target="_blank">
-                        Comprar
-                    </a>
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary redirect-link">Comprar</a>
                 </div>
-                
+  
+
                 <div class="book-item">
-                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" target="_blank">
-                        <img src="https://lvsihmx.github.io/librosih/img\empowerbms.jpg" alt="Portada de Empower B1+" />
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="redirect-link">
+                        <img src="https://lvsihmx.github.io/librosih/img/empowerbms.jpg" alt="Empower A2" />
                     </a>
                     <p class="book-title">Empower B1+</p>
-                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary" target="_blank">
-                        Comprar
-                    </a>
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary redirect-link">Comprar</a>
                 </div>
-
+  
                 <div class="book-item">
-                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" target="_blank">
-                        <img src="https://lvsihmx.github.io/librosih/img\empower b2.jpg" alt="Portada de Empower B2" />
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="redirect-link">
+                        <img src="https://lvsihmx.github.io/librosih/img/empower b2.jpg" alt="Empower A2" />
                     </a>
                     <p class="book-title">Empower B2</p>
-                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary" target="_blank">
-                        Comprar
-                    </a>
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary redirect-link">Comprar</a>
                 </div>
-
+  
                 <div class="book-item">
-                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" target="_blank">
-                        <img src="https://lvsihmx.github.io/librosih/img\empower c1.webp" alt="Portada de Empower C1" />
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="redirect-link">
+                        <img src="https://lvsihmx.github.io/librosih/img/empower c1.webp" alt="Empower A2" />
                     </a>
                     <p class="book-title">Empower C1</p>
-                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary" target="_blank">
-                        Comprar
-                    </a>
+                    <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary redirect-link">Comprar</a>
                 </div>
-                
+  
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div id="customModal">
+        <div class="modal-content">
+            <p>Una vez que hayas terminado tu compra y tengas tu recibo debes regresar a este link para registrar tu compra.</p>
+            <button id="modalButton">Aceptar</button>
+        </div>
+    </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("customModal");
+    const modalButton = document.getElementById("modalButton");
+    let redirectUrl = "";
+
+    document.querySelectorAll('a.redirect-link, .book-item a[href*="pay.ihmexico.mx"]').forEach(link => {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+            redirectUrl = this.href;
+            modal.classList.add("show");
+        });
+    });
+
+    modalButton.addEventListener("click", function () {
+        modal.classList.remove("show");
+        setTimeout(() => {
+            if (redirectUrl) window.open(redirectUrl, "_blank");
+        }, 300);
+    });
+});
+</script>
 
 </body>
 </html>
