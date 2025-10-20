@@ -165,7 +165,7 @@
         color: #333;
     }
 
-    /* Modal styles with fade, blur and zoom animation */
+    /* MODAL STYLES */
     #customModal {
         display: none;
         position: fixed;
@@ -187,9 +187,10 @@
         background-color: #fff;
         border-radius: 15px;
         padding: 30px;
+        width: 90%;
         max-width: 400px;
         text-align: center;
-        margin: 15% auto;
+        margin: 20vh auto;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         transform: scale(0.9);
         transition: transform 0.3s ease;
@@ -219,11 +220,33 @@
         background-color: #0056b3;
         transform: scale(1.05);
     }
+
+    /* ✅ Responsive adjustments for mobile */
+    @media (max-width: 600px) {
+        .header-container {
+            flex-direction: column;
+            padding: 20px;
+        }
+        .logo-ihb { width: 250px; margin-bottom: 10px; }
+        .logo-humanitas { width: 120px; }
+        .text-section { padding: 0 25px 25px 25px; }
+        #customModal .modal-content {
+            width: 85%;
+            margin: 40vh auto;
+            padding: 20px;
+        }
+        #customModal p {
+            font-size: 0.95em;
+        }
+        #modalButton {
+            width: 100%;
+            padding: 12px;
+        }
+    }
 </style>
 </head>
 
 <body>
-
     <div class="header-container">
         <img src="https://lvsihmx.github.io/certificadoih/img/LOGOIHB.jpg" class="logo-ihb" alt="Logo IH International House" />
         <img src="https://lvsihmx.github.io/certificadoih/img/logohum2.png" class="logo-humanitas" alt="Logo Humanitas" />
@@ -242,9 +265,9 @@
             <h3>Adquiere tu libro en estos sencillos pasos:</h3>
             
             <ol>
-                <li>Identifica el título a comprar. Más abajo podrás ver las portadas y **¡da click en comprar!**</li>
+                <li>Identifica el título a comprar. Más abajo podrás ver las portadas y <strong>¡da click en comprar!</strong></li>
                 <li>Debes adquirir tu libro en las fechas que te indique tu plantel.</li>
-                <li>Una vez realizado el pago, **REGISTRA TU COMPRA** usando el botón de abajo.</li>
+                <li>Una vez realizado el pago, <strong>REGISTRA TU COMPRA</strong> usando el botón de abajo.</li>
             </ol>
 
             <div class="btn-group">
@@ -252,7 +275,7 @@
                     Da clic para REGISTRAR TU COMPRA
                 </a>
                 <p class="warning-text">
-                    **¡IMPORTANTE!** Al realizar tu pago debes registrar tu compra con el libro y campus correcto.
+                    <strong>¡IMPORTANTE!</strong> Al realizar tu pago debes registrar tu compra con el libro y campus correcto.
                 </p>
             </div>
         </div>
@@ -270,7 +293,6 @@
         <div class="book-gallery-section">
             <h3 style="text-align:center;">Portadas de Libros</h3>
             <div class="book-grid">
-
                 <div class="book-item">
                     <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="redirect-link">
                         <img src="https://lvsihmx.github.io/librosih/img/empower a1.jpg" alt="Empower A1" />
@@ -278,7 +300,6 @@
                     <p class="book-title">Empower A1</p>
                     <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary redirect-link">Comprar</a>
                 </div>
-
                 <div class="book-item">
                     <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="redirect-link">
                         <img src="https://lvsihmx.github.io/librosih/img/empower a2.jpg" alt="Empower A2" />
@@ -286,42 +307,34 @@
                     <p class="book-title">Empower A2</p>
                     <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary redirect-link">Comprar</a>
                 </div>
-
-
-
                 <div class="book-item">
                     <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="redirect-link">
-                        <img src="https://lvsihmx.github.io/librosih/img/empower b1.jpg" alt="Empower A2" />
+                        <img src="https://lvsihmx.github.io/librosih/img/empower b1.jpg" alt="Empower B1" />
                     </a>
                     <p class="book-title">Empower B1</p>
                     <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary redirect-link">Comprar</a>
                 </div>
-  
-
                 <div class="book-item">
                     <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="redirect-link">
-                        <img src="https://lvsihmx.github.io/librosih/img/empowerbms.jpg" alt="Empower A2" />
+                        <img src="https://lvsihmx.github.io/librosih/img/empowerbms.jpg" alt="Empower B1+" />
                     </a>
                     <p class="book-title">Empower B1+</p>
                     <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary redirect-link">Comprar</a>
                 </div>
-  
                 <div class="book-item">
                     <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="redirect-link">
-                        <img src="https://lvsihmx.github.io/librosih/img/empower b2.jpg" alt="Empower A2" />
+                        <img src="https://lvsihmx.github.io/librosih/img/empower b2.jpg" alt="Empower B2" />
                     </a>
                     <p class="book-title">Empower B2</p>
                     <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary redirect-link">Comprar</a>
                 </div>
-  
                 <div class="book-item">
                     <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="redirect-link">
-                        <img src="https://lvsihmx.github.io/librosih/img/empower c1.webp" alt="Empower A2" />
+                        <img src="https://lvsihmx.github.io/librosih/img/empower c1.webp" alt="Empower C1" />
                     </a>
                     <p class="book-title">Empower C1</p>
                     <a href="https://pay.ihmexico.mx/servicios/universidad-humanitas/" class="btn btn-primary redirect-link">Comprar</a>
                 </div>
-  
             </div>
         </div>
     </div>
