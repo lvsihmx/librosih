@@ -21,21 +21,68 @@ body{margin:0;font-family:Arial,sans-serif;background:#eef2f7;color:#17202a}.wra
 <button id='send' type='submit'>Enviar solicitud</button>
 <p id='status'></p></div></div>
 <script>
-function validateEmailFields(){var els=document.querySelectorAll('input[type=email]');for(var i=0;i<els.length;i++){var e=els[i];if(!e.value.trim())continue;if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.value.trim())){e.setCustomValidity('Escribe un correo electrónico válido, por ejemplo nombre@dominio.com');e.reportValidity();e.focus();e.scrollIntoView({behavior:'smooth',block:'center'});return false;}e.setCustomValidity('');}return true;}
-function validateRequiredForm(){var req=document.querySelectorAll('[required]');for(var i=0;i<req.length;i++){var el=req[i];if(el.type==='file'){if(totalChosenFiles()===0){el.scrollIntoView({behavior:'smooth',block:'center'});el.focus();alert('Debes subir al menos un archivo.');return false;}}else if(!String(el.value||'').trim()){el.scrollIntoView({behavior:'smooth',block:'center'});el.focus();alert('Falta completar el dato: '+(el.getAttribute('data-label')||el.previousElementSibling?.textContent||'campo requerido'));return false;}}return true;}
-function checkRenameFields(){var ids=['nameField','schoolField','examField'];var names=['Nombre','Escuela','Examen'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&!el.value){el.focus();el.scrollIntoView({behavior:'smooth',block:'center'});alert('Selecciona el campo de '+names[i]+' en su desplegable.');return false;}}return true;}
-function b64(f){return new Promise(function(ok,no){var r=new FileReader();r.onload=function(){ok(r.result.split(',')[1])};r.onerror=no;r.readAsDataURL(f)})}
-function compress(f,mb){return new Promise(function(ok,no){var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var w=im.width,h=im.height,s=Math.min(2400/w,2400/h,1);w=Math.max(1,Math.round(w*s));h=Math.max(1,Math.round(h*s));var c=document.createElement('canvas');c.width=w;c.height=h;var x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,w,h);x.drawImage(im,0,0,w,h);var q=.92;c.toBlob(function(bl){ok(bl||f)},'image/jpeg',q)};im.src=r.result};r.onerror=no;r.readAsDataURL(f)})}
-async function generarImagenCombinada(files){var list=Array.from(files||[]).filter(function(f){return (f.type||'').indexOf('image/')===0;});if(!list.length)return null;var items=[];for(var i=0;i<list.length;i++){var f=list[i],url=URL.createObjectURL(f);try{var img=await new Promise(function(resolve,reject){var im=new Image();im.onload=function(){resolve(im)};im.onerror=reject;im.src=url});items.push({type:'image',name:f.name,img:img})}finally{URL.revokeObjectURL(url)}}var margin=10,totalWidth=margin,maxHeight=0;for(var i=0;i<items.length;i++){totalWidth+=items[i].img.width+margin;if(items[i].img.height>maxHeight)maxHeight=items[i].img.height}if(totalWidth>15000)throw new Error('Las imágenes son demasiado grandes');var combo=document.createElement('canvas'),ctx=combo.getContext('2d');combo.width=totalWidth;combo.height=maxHeight;ctx.fillStyle='#ffffff';ctx.fillRect(0,0,combo.width,combo.height);var x=margin;for(var i=0;i<items.length;i++){ctx.drawImage(items[i].img,x,0);x+=items[i].img.width+margin}var quality=.92,blob=null;for(var i=0;i<5;i++){blob=await new Promise(function(resolve){combo.toBlob(resolve,'image/jpeg',quality)});if(blob&&blob.size<=3*1024*1024)break;quality-=.15}if(!blob)throw new Error('No se pudo generar la imagen');return blob;}
-function validateRequiredFiles(){return true;}
-var chosen={};
-document.querySelector('form')?document.querySelector('form').addEventListener('submit',function(e){e.preventDefault()}):null;
-document.querySelector('button[type=submit]').onclick=async function(e){e.preventDefault();if(!validateEmailFields())return;if(!validateRequiredForm())return;if(!validateRequiredFiles())return;var btn=this;btn.disabled=true;var o=document.createElement('div');o.id='sendOverlay';o.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.48);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px';o.innerHTML='<div style="background:#fff;border-radius:18px;padding:28px;width:min(520px,92vw);text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25)"><div style="font-size:22px;font-weight:800;margin-bottom:10px">Uniendo archivos por favor espere</div><div id="mergeText" style="margin:8px 0">Preparando archivos...</div><div style="height:18px;background:#e9edf3;border-radius:999px;overflow:hidden"><div id="mergeBar" style="height:100%;width:0%;transition:width .25s"></div></div><div id="mergePct" style="margin-top:8px;font-weight:700">0%</div><div id="uploadBox" style="display:none;margin-top:24px"><div id="uploadTitle" style="font-size:22px;font-weight:800;margin-bottom:10px">Subiendo archivos por favor espere</div><div id="uploadText" style="margin:8px 0">Conectando con Google...</div><div style="height:18px;background:#e9edf3;border-radius:999px;overflow:hidden"><div id="uploadBar" style="height:100%;width:0%;transition:width .25s"></div></div><div id="uploadPct" style="margin-top:8px;font-weight:700">0%</div></div></div>';document.body.appendChild(o);var mergeBar=document.getElementById('mergeBar'),mergePct=document.getElementById('mergePct'),mergeText=document.getElementById('mergeText'),uploadBox=document.getElementById('uploadBox'),uploadBar=document.getElementById('uploadBar'),uploadPct=document.getElementById('uploadPct'),uploadText=document.getElementById('uploadText');var data={};data.registrationDateTime=new Date().toLocaleString('es-MX',{day:'2-digit',month:'2-digit',year:'numeric',hour:'numeric',minute:'2-digit',second:'2-digit',hour12:false});data.userAgent=navigator.userAgent||'No disponible';data.ipAddress='No disponible';try{var ipRes=await fetch('https://api.ipify.org?format=json',{cache:'no-store'});if(ipRes.ok){var ipJson=await ipRes.json();data.ipAddress=ipJson.ip||'No disponible';}}catch(ipErr){}var totalFiles=0,processedFiles=0;Object.keys(chosen).forEach(function(k){totalFiles+=(chosen[k]||[]).length;});mergeText.textContent='Preparando '+totalFiles+' archivo(s)...';mergeBar.style.width='5%';mergePct.textContent='5%';
-data.field1=document.getElementById('f1').value;
-data.field2=document.getElementById('f2').value;
-data.field3=document.getElementById('f3').value;
-data.field4=document.getElementById('f4').value;
-data.field5=document.getElementById('f5').value;
-mergeBar.style.width='100%';mergePct.textContent='100%';mergeText.textContent='Archivos integrados correctamente';uploadBox.style.display='block';uploadBar.style.width='0%';uploadPct.textContent='0%';uploadText.textContent='Subiendo archivos por favor espere';var up=0;var timer=setInterval(function(){if(up<95){up+=5;uploadBar.style.width=up+'%';uploadPct.textContent=up+'%';}},350);var timeout=setTimeout(function(){clearInterval(timer);btn.disabled=false;var ov=document.getElementById('sendOverlay');if(ov)ov.remove();alert('error al subir revisa tu conexión a internet');},60000);function finishUpload(r){clearTimeout(timeout);clearInterval(timer);if(!r||r.ok===false)throw new Error(r&&r.message?r.message:'Apps Script devolvió un error.');uploadBar.style.width='100%';uploadPct.textContent='100%';uploadText.textContent='Datos enviados, Gracias!!';document.getElementById('uploadTitle').textContent='Datos enviados, Gracias!!';btn.disabled=true;var form=document.querySelector('form');if(form)form.reset();chosen={};setTimeout(function(){try{window.close();}catch(closeErr){}var ov=document.getElementById('sendOverlay');if(ov)ov.remove();},3000);}function failUpload(err){clearTimeout(timeout);clearInterval(timer);var ov=document.getElementById('sendOverlay');if(ov)ov.remove();btn.disabled=false;alert('No se pudo enviar la solicitud. '+(err&&err.message?err.message:'Revisa la conexión, la URL y los permisos de implementación de Apps Script.'));}try{var req=new XMLHttpRequest();req.open('POST',"https://script.google.com/macros/s/AKfycbz1UwQ55NeVEob72YV30t2huGHODXKy9V1Wdl8b60ERJSUBiXwypm5WDs1FgG8-kzvECQ/exec",true);req.timeout=60000;req.setRequestHeader('Content-Type','text/plain;charset=UTF-8');req.onload=function(){if(req.status>=200&&req.status<300){try{finishUpload(JSON.parse(req.responseText));}catch(e){failUpload(e);}}else failUpload();};req.onerror=failUpload;req.ontimeout=failUpload;req.send(JSON.stringify(data));}catch(e){failUpload();}
-};
+(function(){
+  "use strict";
+  const API_URL = "https://script.google.com/macros/s/AKfycbwYz0A2j30DJgx76rxazgGUInyBpaEtCWKHiJRQD0a2UDolrJy7F7xjlEExIW9bnaqZ/exec";
+  const button = document.getElementById("send");
+  const status = document.getElementById("status");
+
+  function getData(){
+    return {
+      field1: document.getElementById("f1").value.trim(),
+      field2: document.getElementById("f2").value.trim(),
+      field3: document.getElementById("f3").value.trim(),
+      field4: document.getElementById("f4").value.trim(),
+      field5: document.getElementById("f5").value
+    };
+  }
+
+  button.addEventListener("click", async function(event){
+    event.preventDefault();
+    const data = getData();
+
+    if(!data.field1 || !data.field2 || !data.field3 || !data.field4 || !data.field5){
+      alert("Completa todos los campos obligatorios.");
+      return;
+    }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.field2)){
+      alert("Escribe un correo electrónico válido.");
+      document.getElementById("f2").focus();
+      return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Enviando...";
+    status.textContent = "Enviando tu solicitud. Por favor espera.";
+
+    try{
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {"Content-Type":"text/plain;charset=UTF-8"},
+        body: JSON.stringify(data),
+        redirect: "follow"
+      });
+      const raw = await response.text();
+      let result;
+      try { result = JSON.parse(raw); }
+      catch(parseError) {
+        throw new Error("El servidor no devolvió una respuesta JSON. Verifica que la URL sea la implementación web correcta de Apps Script.");
+      }
+
+      if(!response.ok || !result || result.ok !== true){
+        throw new Error(result && result.message ? result.message : "El servidor rechazó el registro.");
+      }
+
+      status.textContent = "Datos enviados, ¡Gracias!";
+      button.textContent = "Enviado";
+      const formFields = document.querySelectorAll("#f1,#f2,#f3,#f4,#f5");
+      formFields.forEach(el => el.disabled = true);
+    }catch(error){
+      status.textContent = "";
+      alert("No se pudo enviar la solicitud: " + (error && error.message ? error.message : String(error)));
+      button.disabled = false;
+      button.textContent = "Enviar solicitud";
+    }
+  });
+})();
 </script></body></html>
